@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: httpserver
+  labels:
+    app: httpserver
+spec:
+  # pod作成数
+  replicas: 3
+  selector:
+    matchLabels:
+      # templateのラベルと一致するPodを管理対象とする
+      app: httpserver
+  template:
+    metadata:
+      labels:
+        app: httpserver
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.25.3
